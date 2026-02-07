@@ -100,12 +100,26 @@ public/             → {{description}}
 4. Read `.cursorrules` (or equivalent) for code style and architecture patterns
 5. Check GitHub Issues for full task details before starting work
 
+### Task Completion Workflow
+
+**GitHub Issues is the single source of truth.** Follow this workflow:
+
+1. **Work** — Implement the task
+2. **Test** — Verify it works (dev server, type check, manual test)
+3. **Review** — If testing passes, update the GitHub Issue:
+   - Add a comment with status (partial/complete)
+   - Check off completed items in the issue body
+   - Close the issue if fully complete (with summary comment)
+4. **Sync** — Update PROJECT_STATUS.md (changelog + Next Up)
+5. **Commit** — Reference the issue: `closes #X` or `progress on #X`
+
 ### On Session End (UPDATE)
 
-You MUST update this file at the end of every working session:
-1. Add a changelog entry summarizing what was done
-2. Update **Next Up** if tasks were completed or priorities shifted
-3. Update **Status** if sprint or branch changed
+You MUST update at the end of every working session:
+1. Update **GitHub Issues** first (comments, close if done)
+2. Add a changelog entry to this file
+3. Update **Next Up** if tasks were completed
+4. Update **Status** if sprint or branch changed
 
 ### When to Update (TRIGGERS)
 
