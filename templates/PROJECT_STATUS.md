@@ -34,46 +34,47 @@
 <!-- Format: [YYYY-MM-DD] CATEGORY — short description -->
 <!-- Categories: SETUP | FEATURE | FIX | REFACTOR | DOCS | ORG | DEPLOY | CONFIG | CHORE | RETRO -->
 
-- `[{{DATE}}] SETUP` — Project initialized
-- `[{{DATE}}] DOCS` — PROJECT_STATUS.md created as project entry point
+- \`[{{DATE}}] SETUP\` — Project initialized
+- \`[{{DATE}}] DOCS\` — PROJECT_STATUS.md created as project entry point
 
 ## Task Management
 
 | What | Where |
 |------|-------|
 | All tasks | [GitHub Issues]({{REPO_URL}}/issues) |
-| Filter by sprint | Label: `sprint:1` through `sprint:N` |
-| Filter by priority | Label: `P0: must have`, `P1: should have`, `P2: nice to have` |
+| Filter by sprint | Label: \`sprint:1\` through \`sprint:N\` |
+| Filter by priority | Label: \`P0: must have\`, \`P1: should have\`, \`P2: nice to have\` |
 | Sprint progress | [Milestones]({{REPO_URL}}/milestones) |
 
 ## Directory Map
 
 <!-- Update this as project structure evolves -->
 
-```
+\`\`\`
 app/                → {{description}}
 components/         → {{description}}
 lib/                → {{description}}
 types/              → {{description}}
 docs/               → {{description}}
+docs/design/        → CI reference, page templates, brand assets
 public/             → {{description}}
-```
+\`\`\`
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `PROJECT_STATUS.md` | **This file** — entry point, state, changelog, next actions |
-| `.cursorrules` | AI coding conventions, patterns, code style |
-| `docs/REQUIREMENTS.md` | Full technical specification |
-| `.env.example` | Required environment variables template |
+| \`PROJECT_STATUS.md\` | **This file** — entry point, state, changelog, next actions |
+| \`.cursorrules\` | AI coding conventions, patterns, code style |
+| \`docs/REQUIREMENTS.md\` | Full technical specification |
+| \`.env.example\` | Required environment variables template |
 
 ## Conventions
 
 | Area | Convention |
 |------|-----------|
-| Branching | `feature/#issue-number-short-name` |
-| Commits | Conventional: `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:` |
+| Branching | \`feature/#issue-number-short-name\` |
+| Commits | Conventional: \`feat:\`, \`fix:\`, \`docs:\`, \`refactor:\`, \`chore:\`, \`test:\` |
 | Components | {{component conventions}} |
 | Styling | {{styling conventions}} |
 | Types | {{type conventions}} |
@@ -97,7 +98,7 @@ public/             → {{description}}
 1. Read this file FIRST before any other action
 2. Check **Status** to understand current phase and sprint
 3. Check **Next Up** for immediate priorities
-4. Read `.cursorrules` (or equivalent) for code style and architecture patterns
+4. Read \`.cursorrules\` (or equivalent) for code style and architecture patterns
 5. Check GitHub Issues for full task details before starting work
 
 ### Task Completion Workflow
@@ -106,12 +107,22 @@ public/             → {{description}}
 
 1. **Work** — Implement the task
 2. **Test** — Verify it works (dev server, type check, manual test)
-3. **Review** — If testing passes, update the GitHub Issue:
+3. **Design Review** — For ANY visual/UI/front-end task:
+   - Generate a \`_review.html\` / \`_review-pages.html\` with visual previews
+   - Present ALL data human-readable — no raw hex/RGB codes without visual swatches
+   - **Versioning:** Every update to design files MUST bump the version (\`vYY-MM-DD-HHMM\`) in 3 places: \`<title>\`, red banner, \`<h1>\` heading
+   - **Source of truth:** \`docs/design/ci-reference.html\` and \`docs/design/page-templates.html\` — root \`_review*.html\` are temporary copies
+   - **Workflow:** Edit in \`docs/design/\` → bump version → sync root copies → open in Chrome
+   - Auto-open in Chrome: \`open -a "Google Chrome" docs/design/<file>.html\`
+   - **WAIT for explicit human approval** before committing or closing
+   - Delete root \`_review*.html\` files after approval
+   - NEVER close design issues without human sign-off
+4. **Review** — If testing passes (and human approved if design), update the GitHub Issue:
    - Add a comment with status (partial/complete)
    - Check off completed items in the issue body
    - Close the issue if fully complete (with summary comment)
-4. **Sync** — Update PROJECT_STATUS.md (changelog + Next Up)
-5. **Commit** — Reference the issue: `closes #X` or `progress on #X`
+5. **Sync** — Update PROJECT_STATUS.md (changelog + Next Up)
+6. **Commit** — Reference the issue: \`closes #X\` or \`progress on #X\`
 
 ### On Session End (UPDATE)
 
@@ -134,28 +145,28 @@ You MUST update at the end of every working session:
 ### How to Update the Changelog
 
 - Add new entries at the **TOP** (newest first)
-- Format: `[YYYY-MM-DD] CATEGORY` — short description
-- Categories: `SETUP` `FEATURE` `FIX` `REFACTOR` `DOCS` `ORG` `DEPLOY` `CONFIG` `CHORE`
+- Format: \`[YYYY-MM-DD] CATEGORY\` — short description
+- Categories: \`SETUP\` \`FEATURE\` \`FIX\` \`REFACTOR\` \`DOCS\` \`ORG\` \`DEPLOY\` \`CONFIG\` \`CHORE\`
 - One line per entry, keyword-style, no prose
-- Reference issues: `closes #5`, `progress on #12`
-- Max 20 entries visible — archive older entries to `docs/CHANGELOG_ARCHIVE.md`
+- Reference issues: \`closes #5\`, \`progress on #12\`
+- Max 20 entries visible — archive older entries to \`docs/CHANGELOG_ARCHIVE.md\`
 
 ### How to Update Next Up
 
 - Pull from GitHub Issues — current sprint, P0 first, then P1
 - Max 5 items — remove completed, add upcoming
-- Format: `- [ ] #number — Title (priority)`
+- Format: \`- [ ] #number — Title (priority)\`
 - When all sprint items done → advance to next sprint
 
 ### How to Update Status
 
-- Change `Current Sprint` when milestone is completed
-- Change `Last Updated` to today's date
-- Change `Active Branch` to reflect current work
+- Change \`Current Sprint\` when milestone is completed
+- Change \`Last Updated\` to today's date
+- Change \`Active Branch\` to reflect current work
 
 ### Rules
 
-- NEVER delete changelog entries (archive to `docs/CHANGELOG_ARCHIVE.md`)
+- NEVER delete changelog entries (archive to \`docs/CHANGELOG_ARCHIVE.md\`)
 - NEVER change the section order of this file
 - NEVER add long descriptions — link to docs or issues instead
 - NEVER add tasks to Next Up that don't exist in GitHub Issues
@@ -169,7 +180,7 @@ When approximately 2 days have passed since the last retro, prompt the human for
 
 ### Format
 
-```
+\`\`\`
 --- RETRO [YYYY-MM-DD] ---
 
 Flow:    [keyword — e.g. smooth, stuck, scattered, focused]
@@ -179,7 +190,7 @@ Next:    [one adjustment for the next 2 days]
 Dao:     [a brief Taoist insight relevant to the current situation]
 
 ---
-```
+\`\`\`
 
 ### Retro Principles
 
@@ -194,10 +205,10 @@ Blend Taoist philosophy with modern agile practice:
 
 ### When to Prompt Retro
 
-- Check `Last Retro` date below
+- Check \`Last Retro\` date below
 - If >= 2 days have passed, gently prompt the human at a natural pause point
 - Keep it light — 2 minutes max, not a ceremony
-- Log the retro in the Changelog as: `[DATE] RETRO — [one-line summary]`
+- Log the retro in the Changelog as: \`[DATE] RETRO — [one-line summary]\`
 
 **Last Retro:** none yet
 **Retro Cadence:** every 2 days
