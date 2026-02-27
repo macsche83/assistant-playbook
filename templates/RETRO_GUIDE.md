@@ -17,7 +17,7 @@ Flow:    [one keyword — smooth, stuck, scattered, focused, rushing, calm]
 Win:     [one thing that went well]
 Friction:[one thing that slowed us down]
 Next:    [one adjustment for the next 2 days]
-Dao:     [a brief Taoist insight relevant to the current moment]
+Dao:     [a brief Taoist insight + plain-language explanation of what it means]
 
 ---
 ```
@@ -31,7 +31,7 @@ Flow:    focused
 Win:     Notion integration done in one session
 Friction:Spent too long choosing between caching strategies
 Next:    Pick the simpler option first, optimize later
-Dao:     "The best knife is used, not admired." Ship it.
+Dao:     "The best knife is used, not admired." — A tool's value is in its use, not its polish. Ship working code before perfecting it.
 
 ---
 ```
@@ -68,6 +68,17 @@ Empty space is not nothing — it's potential.
 Rest is part of the rhythm. Breaks make you faster, not slower.
 **Ask:** "When did I last step away?"
 
+## Sprint Velocity Review
+
+Track actual time vs estimates after each sprint to improve future planning:
+
+```
+Sprint N: Xh estimated → Yh actual (Z%)
+Pattern: [what type of tasks take longer/shorter than expected]
+```
+
+This builds an estimation reference over time. AI+human pair work has different velocity patterns than solo work — tracking reveals which task types benefit most from collaboration.
+
 ## Agile Reminders
 
 - **Sprint = Breath:** Inhale (plan, build) → Exhale (ship, reflect). Don't hold your breath.
@@ -91,3 +102,4 @@ When prompting for a retro:
 - Keep the tone warm and encouraging — coach, not manager
 - If the human declines, respect it — try again next session
 - Never repeat Taoist quotes — find fresh ones relevant to the situation
+- **Always explain the wisdom** — don't just drop a quote. Add a brief plain-language note on what it means and how it relates to the current work. The insight should be actionable, not decorative.

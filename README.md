@@ -7,15 +7,17 @@ Boilerplate templates and conventions for AI-assisted software development. Drop
 ```
 templates/
 ├── PROJECT_STATUS.md    → Project entry point (state, changelog, AI instructions)
+├── CURRENT_SPRINT.md    → Active sprint tracker (issues, decisions, blockers)
 └── RETRO_GUIDE.md       → Lightweight retro format (Taoism + Agile)
 ```
 
 ## Quick Start
 
 1. Copy `templates/PROJECT_STATUS.md` into your project root
-2. Replace all `{{PLACEHOLDERS}}` with your project details
-3. Point your `.cursorrules` / AI config to read it first
-4. Update it at the end of every working session
+2. Copy `templates/CURRENT_SPRINT.md` into your project root
+3. Replace all `{{PLACEHOLDERS}}` with your project details
+4. Point your `.cursorrules` / AI config to read `PROJECT_STATUS.md` first
+5. Update it at the end of every working session
 
 ## Templates
 
@@ -33,14 +35,31 @@ The **single source of truth** for project state. Any AI agent, IDE, or develope
 - **Key Files** — reference table
 - **Conventions** — branching, commits, components, styling
 - **Tools** — what's used and for what
-- **AI Agent Instructions** — read/update rules with triggers and formats
-- **Retro & Reflection** — coaching cadence with Taoist principles
+- **Production** — URLs, prerequisites, env vars, deploy & test commands
+- **AI Agent Instructions** — feature workflow, test rules, design versioning, session lifecycle
+- **Retro & Reflection** — coaching cadence with Taoist principles, sprint velocity tracking
+- **Dao Master** — work-life balance (break reminders, daily wrap-ups)
 
 **AI Instructions include:**
-- When to read (session start)
-- When to update (triggers: task done, sprint change, org change, session end)
-- How to update (changelog format, next-up format, status format)
+- **Feature Workflow** — 5-step: Ticket → Wireframe → Approve → Build → Test
+- **Test-With-Feature Rule** — every feature ships with smoke tests
+- **Design File Versioning** — version bump in 3 places, sync review files
+- **Issue Lifecycle Rules** — scope growth, design tickets, DoD updates
+- Session start (read) and session end (update) checklists
+- Changelog, Next Up, and Status update formats
 - What never to do (delete history, change order, add prose)
+
+### CURRENT_SPRINT.md
+
+An **active sprint tracker** that lives alongside PROJECT_STATUS.md.
+
+**Sections:**
+- **Issues** — table with status, owner, notes
+- **Current Focus** — human tasks vs AI tasks
+- **Decisions** — key technical choices made during the sprint
+- **Blockers** — current blockers and how to resolve
+- **Verification** — checklist before closing the sprint
+- **Retrospective** — fill in at sprint end, then archive
 
 ### RETRO_GUIDE.md
 
