@@ -1,0 +1,13 @@
+---
+name: project_context
+description: Project goals, key decisions, and constraints that inform all work
+type: project
+---
+
+**Project:** {{PROJECT_NAME}}
+**Goal:** {{ONE_LINE_GOAL}}
+**Key constraint:** {{KEY_CONSTRAINT}}
+
+**Why:** {{WHY_THIS_PROJECT_EXISTS}}
+
+**How to apply:** Use this context to make better-informed suggestions and understand the motivation behind tasks.

@@ -1,0 +1,51 @@
+# Skills — API Access Patterns
+
+Code patterns for all external services used in this project.
+Each section includes working code and **gotchas** learned from experience.
+
+---
+
+## {{SERVICE_1_NAME}}
+
+**Auth:** {{AUTH_METHOD}}
+**Base URL:** {{BASE_URL}}
+
+### {{OPERATION_1}}
+
+```{{LANG}}
+{{CODE_EXAMPLE_1}}
+```
+
+### {{OPERATION_2}}
+
+```{{LANG}}
+{{CODE_EXAMPLE_2}}
+```
+
+> **Gotcha:** {{GOTCHA_1}}
+
+---
+
+## {{SERVICE_2_NAME}}
+
+**Auth:** {{AUTH_METHOD}}
+
+### {{OPERATION_1}}
+
+```{{LANG}}
+{{CODE_EXAMPLE}}
+```
+
+> **Gotcha:** {{GOTCHA}}
+
+---
+
+<!-- Pattern for each service:
+     1. Auth method + base URL
+     2. Most common operations with working code
+     3. Gotchas — hard-won knowledge that saves debugging time
+
+     Keep gotchas specific and actionable:
+     BAD:  "Be careful with the API"
+     GOOD: "Attachment IDs expire — always re-fetch the message immediately before downloading"
+-->

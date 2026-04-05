@@ -1,0 +1,55 @@
+# SKILL — Service Connections & Access
+
+> All external services, accounts, and connection details for {{PROJECT_NAME}}.
+> **Never commit secrets, passwords, or API keys to this file — use .env for those.**
+
+## Repository
+
+| Key | Value |
+|-----|-------|
+| Host | {{REPO_HOST}} |
+| Repo | {{REPO_URL}} |
+| Visibility | {{VISIBILITY}} |
+| CLI | `gh` / `git` |
+
+{{#HOSTING}}
+## Hosting
+
+| Key | Value |
+|-----|-------|
+| Provider | {{HOSTING_PROVIDER}} |
+| Dashboard | {{HOSTING_URL}} |
+| Deploy command | `{{DEPLOY_COMMAND}}` |
+| Domain | {{DOMAIN}} |
+{{/HOSTING}}
+
+{{#TASK_TRACKER}}
+## Task Tracker
+
+| Key | Value |
+|-----|-------|
+| Tool | {{TRACKER_NAME}} |
+| Project URL | {{TRACKER_URL}} |
+| Access | {{TRACKER_ACCESS}} |
+{{/TASK_TRACKER}}
+
+{{#SERVICES}}
+## {{SERVICE_NAME}}
+
+| Key | Value |
+|-----|-------|
+| Account | {{ACCOUNT}} |
+| URL | {{SERVICE_URL}} |
+| CLI / Access | {{ACCESS_METHOD}} |
+| Notes | {{NOTES}} |
+{{/SERVICES}}
+
+---
+
+## Future Services
+
+<!-- Add as the project progresses -->
+
+| Service | Phase | Purpose |
+|---------|-------|---------|
+| {{SERVICE}} | {{PHASE}} | {{PURPOSE}} |

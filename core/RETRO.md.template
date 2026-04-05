@@ -1,0 +1,8 @@
+# Retro Log — {{PROJECT_NAME}}
+
+Cadence: {{RETRO_CADENCE}}.
+Format: quick + dirty. See `RETRO_GUIDE.md` for the full format and Taoist principles.
+
+---
+
+<!-- Newest first. Add entries as retros happen. -->

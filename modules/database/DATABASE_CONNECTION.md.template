@@ -1,0 +1,57 @@
+# Database Connection — {{PROJECT_NAME}}
+
+## Connection Details
+
+| Key | Value |
+|-----|-------|
+| Engine | {{DB_ENGINE}} |
+| Host | {{DB_HOST}} |
+| Database | {{DB_NAME}} |
+| User | {{DB_USER}} |
+| Port | {{DB_PORT}} |
+| Credentials | {{CREDENTIAL_LOCATION}} |
+
+{{#BASTION}}
+## Bastion / Tunnel Access
+
+```bash
+# SSH tunnel
+ssh -i {{KEY_PATH}} {{BASTION_USER}}@{{BASTION_HOST}} -L {{LOCAL_PORT}}:{{DB_HOST}}:{{DB_PORT}}
+
+# Then connect locally
+{{DB_CLI}} -h localhost -p {{LOCAL_PORT}} -U {{DB_USER}} {{DB_NAME}}
+```
+{{/BASTION}}
+
+{{#SQLITE}}
+## SQLite (Local)
+
+```bash
+# Direct access
+sqlite3 {{DB_PATH}} "SELECT COUNT(*) FROM {{TABLE}};"
+
+# In scripts
+const db = require('better-sqlite3')('{{DB_PATH}}');
+```
+{{/SQLITE}}
+
+## Query Execution
+
+```bash
+# Using helper script (if available)
+./lib/execute.sh queries/{{QUERY_FILE}} [csv|table]
+
+# Direct
+{{DIRECT_QUERY_COMMAND}}
+```
+
+## Backup
+
+```bash
+{{BACKUP_COMMAND}}
+```
+
+## Notes
+
+- {{NOTE_1}}
+- {{NOTE_2}}

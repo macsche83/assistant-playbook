@@ -1,0 +1,14 @@
+---
+name: reference_services
+description: External service IDs, URLs, API endpoints, and access details
+type: reference
+---
+
+{{#SERVICES}}
+**{{SERVICE_NAME}}:**
+- URL: {{SERVICE_URL}}
+- Access: {{ACCESS_METHOD}}
+- Notes: {{NOTES}}
+{{/SERVICES}}
+
+**How to apply:** Reference these when working with external services. Verify URLs and IDs are still valid before using — services can change.

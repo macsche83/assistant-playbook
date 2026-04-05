@@ -1,0 +1,62 @@
+# New Machine Setup — {{PROJECT_NAME}}
+
+Follow these steps in order after `git clone` or `scp` to a new machine.
+
+## 1. Verify Runtime
+
+```bash
+{{RUNTIME_CHECK}}   # e.g. node --version (need v22+)
+```
+
+## 2. Install Dependencies
+
+```bash
+{{INSTALL_COMMAND}}  # e.g. npm install
+```
+
+## 3. Verify Credentials
+
+```bash
+source credentials/.env && echo ${{PRIMARY_KEY_NAME}}
+# Should print a value, not empty
+```
+
+If `credentials/.env` doesn't exist, copy from `.env.example`:
+```bash
+cp credentials/.env.example credentials/.env
+# Then fill in real values
+```
+
+## 4. Verify Database / State
+
+```bash
+{{DB_VERIFY_COMMAND}}
+```
+
+## 5. Dry Run
+
+```bash
+source credentials/.env && {{DRY_RUN_COMMAND}}
+```
+
+## 6. Install Scheduled Jobs (if applicable)
+
+```bash
+{{CRON_SETUP_COMMAND}}
+```
+
+## 7. Start Services (if applicable)
+
+```bash
+{{START_COMMAND}}
+```
+
+## Verification Checklist
+
+- [ ] Runtime version correct
+- [ ] Dependencies installed
+- [ ] Credentials loaded (no empty values)
+- [ ] Database accessible
+- [ ] Dry run completes without errors
+- [ ] Scheduled jobs installed (check with `crontab -l`)
+- [ ] Services start and respond

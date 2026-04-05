@@ -1,0 +1,15 @@
+---
+name: retro
+description: Retro cadence, format, and last retro date/task count for triggering next retro
+type: project
+---
+
+Retro log lives in `RETRO.md` in the repo root. See `RETRO_GUIDE.md` for format and principles.
+
+**Cadence:** {{RETRO_CADENCE}}
+**Last retro:** none yet
+**Tasks completed since last retro:** 0
+
+**Why:** Keep the human-AI collaboration evolving. Lightweight, self-governing, no overhead.
+
+**How to apply:** At the start of each session, check if the cadence threshold has been reached. If so, prompt gently for a quick retro before starting work. Write the entry to RETRO.md and update this file with the new date + reset task count.

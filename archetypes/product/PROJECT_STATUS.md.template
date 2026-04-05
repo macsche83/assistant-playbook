@@ -1,0 +1,120 @@
+# PROJECT STATUS — {{PROJECT_NAME}}
+
+> **This is the entry point.** Every AI agent, IDE tool, and human developer reads this file FIRST.
+
+## Project
+
+| Key | Value |
+|-----|-------|
+| Name | {{PROJECT_NAME}} |
+| Repo | {{REPO_URL}} |
+| Stack | {{TECH_STACK}} |
+| Goal | {{ONE_LINE_GOAL}} |
+
+## Status
+
+| Key | Value |
+|-----|-------|
+| Phase | {{PHASE}} |
+| Current Sprint | {{CURRENT_SPRINT}} |
+| Last Updated | {{DATE}} |
+| Active Branch | `main` |
+
+## Next Up
+
+<!-- Max 5 items. Pull from task tracker. Highest priority first. -->
+
+- [ ] {{Task 1}} (P0)
+- [ ] {{Task 2}} (P1)
+- [ ] {{Task 3}} (P1)
+
+## Changelog
+
+<!-- Newest first. Max 20 entries. Archive older to docs/CHANGELOG_ARCHIVE.md -->
+<!-- Format: [YYYY-MM-DD] CATEGORY — short description -->
+<!-- Categories: SETUP | FEATURE | FIX | REFACTOR | DOCS | ORG | DEPLOY | CONFIG | CHORE | LAUNCH | TEST | RETRO -->
+
+- `[{{DATE}}] SETUP` — Project initialized with assistant-playbook
+- `[{{DATE}}] DOCS` — PROJECT_STATUS.md created as project entry point
+
+## Directory Map
+
+<!-- Update this as project structure evolves -->
+
+```
+{{DIRECTORY_MAP}}
+```
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `PROJECT_STATUS.md` | **This file** — entry point, state, changelog, next actions |
+| `CLAUDE.md` | AI agent rules and collaboration workflow |
+| `CURRENT_SPRINT.md` | Active sprint tracker |
+| `SKILL.md` | External services, accounts, CLI paths |
+| `RETRO.md` | Retro log |
+| `memory/` | Persistent AI memory |
+
+## Conventions
+
+| Area | Convention |
+|------|-----------|
+| Branching | `feature/#issue-number-short-name` |
+| Commits | Conventional: `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:` |
+| Components | {{COMPONENT_CONVENTION}} |
+| Styling | {{STYLING_CONVENTION}} |
+| Types | {{TYPE_CONVENTION}} |
+| Language | {{UI_LANGUAGE}} |
+
+## Tools & Integrations
+
+| Tool | Purpose |
+|------|---------|
+| {{IDE}} | Primary IDE |
+| Claude Code | AI coding assistant |
+| {{TASK_TRACKER}} | Task management |
+| {{HOSTING}} | Deployment |
+| {{REPO_HOST}} | Repo, Issues, PRs |
+
+## Production
+
+<!-- Fill in once deployed. Remove this section if not yet live. -->
+
+| Key | Value |
+|-----|-------|
+| Primary URL | `https://{{DOMAIN}}` |
+| Hosting | {{HOSTING_PROVIDER}} |
+
+### Prerequisites
+
+```bash
+{{PREREQUISITES}}
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in real values:
+
+| Variable | Source |
+|----------|--------|
+| `{{VAR_1}}` | {{WHERE_TO_FIND}} |
+
+### Deploy
+
+```bash
+{{DEV_COMMAND}}           # local development
+{{DEPLOY_COMMAND}}        # deploy to production
+```
+
+## Feature Workflow — Ticket > Wireframe > Approve > Build > Test
+
+**Every new feature follows this sequence. No step may be skipped.**
+
+1. **Ticket First** — create in task tracker with title, description, and DoD before any implementation
+2. **Wireframe / Design First** — for UI features: update the design file before writing any code. STOP and ask for review.
+3. **Human Approves** — explicit approval required. Silence is not consent.
+4. **Implement** — build exactly what was approved
+5. **Test** — add smoke test assertions, run all tests, verify in browser
+
+**Exempt:** bug fixes, copy tweaks, and non-visual backend changes (no wireframe needed, but still need a ticket).

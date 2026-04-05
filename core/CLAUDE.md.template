@@ -1,0 +1,122 @@
+# CLAUDE.md — {{PROJECT_NAME}}
+
+> All instructions for Claude Code and any AI agent on this project. Single source of truth for workflow.
+
+## On Session Start
+
+1. Read this file FIRST
+{{#PRODUCT}}
+2. Read `PROJECT_STATUS.md` — current phase, sprint, next up
+3. Read `CURRENT_SPRINT.md` — active sprint details (if exists)
+4. Read `SKILL.md` — external services, accounts, CLI paths
+{{/PRODUCT}}
+{{#SYSTEM}}
+2. Read `INSTRUCTIONS.md` — architecture, data model, operations guide
+{{/SYSTEM}}
+{{#PROCESS}}
+2. Read `WORKFLOW.md` — step-by-step procedures
+3. Read `SKILLS.md` — API code patterns and gotchas
+{{/PROCESS}}
+4. Read `memory/MEMORY.md` — persistent context from prior sessions
+
+## Project Context
+
+| Key | Value |
+|-----|-------|
+| Name | {{PROJECT_NAME}} |
+| Repo | {{REPO_URL}} |
+| Stack | {{TECH_STACK}} |
+| Goal | {{ONE_LINE_GOAL}} |
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `CLAUDE.md` | **This file** — entry point, rules, workflow |
+{{#PRODUCT}}
+| `PROJECT_STATUS.md` | Project state, changelog, next actions |
+| `CURRENT_SPRINT.md` | Active sprint tracker |
+| `SKILL.md` | External services and access details |
+{{/PRODUCT}}
+{{#SYSTEM}}
+| `INSTRUCTIONS.md` | Full architecture, setup, operations guide |
+| `config.js` | All settings in one place |
+{{/SYSTEM}}
+{{#PROCESS}}
+| `WORKFLOW.md` | Step-by-step procedures |
+| `SKILLS.md` | API code patterns with gotchas |
+{{/PROCESS}}
+| `RETRO.md` | Retro log — lightweight, Taoist + Agile |
+| `memory/` | Persistent AI memory (portable, in-repo) |
+{{#HAS_CREDENTIALS}}
+| `credentials/.env` | All secrets (gitignored) |
+{{/HAS_CREDENTIALS}}
+
+## Memory
+
+All persistent memory lives in `./memory/` inside this repo — **not** in `~/.claude/`. Always read from and write to `./memory/` for this project. The `memory/MEMORY.md` file is the index; individual memory files live alongside it.
+
+Memory format: frontmatter with `name`, `description`, `type` (user/feedback/project/reference), then content body.
+
+## Collaboration Rules
+
+1. **Before starting any task** — if confidence is >=95%, ask one confirming question before implementing. No silent assumptions.
+2. **Commit messages** — conventional format: `type: description {{TASK_ID_FORMAT}}`. Types: `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:`
+{{#HAS_REVIEW_GATE}}
+3. **After completing a task** — set status to **In Review** (not Completed). {{USER_NAME}} reviews before closing.
+{{/HAS_REVIEW_GATE}}
+4. **Estimates** — use AI-assisted t-shirt sizes: XS=<15min, S=15-45min, M=45min-2h, L=2-4h. Reference comparable completed tasks.
+5. **Retro** — every {{RETRO_CADENCE}}. Write entry to `RETRO.md`, update `memory/retro.md` task count.
+
+## Code Rules
+
+1. Read the depth file ({{DEPTH_FILE}}) before making changes
+{{#HAS_SCRIPTS}}
+2. `--dry-run` first when testing scripts
+{{/HAS_SCRIPTS}}
+3. {{LANGUAGE_RULE}}
+4. Clean up test data after testing
+{{#NODE_PROJECT}}
+5. Use structured logging — never use raw `console.log` or `console.error` in scripts
+{{/NODE_PROJECT}}
+
+## Session Lifecycle
+
+### On Session Start (READ)
+
+1. Read this file
+2. Read {{DEPTH_FILE}} for current state
+3. Check `memory/MEMORY.md` for persistent context
+4. Check if retro is due (see `memory/retro.md`)
+
+### On Session End (UPDATE)
+
+1. Update {{DEPTH_FILE}} if state changed
+2. Add changelog entry if work was done
+3. Update `memory/` if new learnings
+4. Increment task count in `memory/retro.md`
+
+{{#TASK_TRACKER}}
+## Task Management
+
+{{TASK_TRACKER_CONTENT}}
+{{/TASK_TRACKER}}
+
+{{#DESIGN_REVIEW}}
+## Design Review Gate
+
+For ANY visual/UI change:
+
+1. Update design file, bump version
+2. Present to {{USER_NAME}} for review
+3. **WAIT for explicit "go"** — silence is NOT consent
+4. Only then proceed to implement
+{{/DESIGN_REVIEW}}
+
+{{#DOC_SYNC}}
+## Documentation Sync
+
+Before committing a version bump or significant change, update these in order:
+
+{{DOC_SYNC_LIST}}
+{{/DOC_SYNC}}

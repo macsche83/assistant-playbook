@@ -1,0 +1,108 @@
+# Overview & Instructions — {{PROJECT_NAME}}
+
+> {{#TASK_TRACKER_URL}}**Task Tracker:** [{{TRACKER_NAME}}]({{TASK_TRACKER_URL}}){{/TASK_TRACKER_URL}}
+
+## Overview
+
+{{PROJECT_DESCRIPTION}}
+
+### What It Does
+
+- {{CAPABILITY_1}}
+- {{CAPABILITY_2}}
+- {{CAPABILITY_3}}
+
+## Prerequisites
+
+| Requirement | Purpose |
+|---|---|
+| {{PREREQUISITE_1}} | {{PURPOSE_1}} |
+| {{PREREQUISITE_2}} | {{PURPOSE_2}} |
+
+## Setup
+
+### 1. Clone & Install
+
+```bash
+git clone {{REPO_URL}}
+cd {{PROJECT_DIR}}
+{{INSTALL_COMMAND}}
+```
+
+### 2. Environment Variables
+
+All credentials live in `credentials/.env` inside the repo (gitignored — not committed). This makes the folder fully self-contained for `scp` migrations.
+
+```bash
+export {{VAR_1}}=...   # {{VAR_1_DESC}}
+export {{VAR_2}}=...   # {{VAR_2_DESC}}
+```
+
+### 3. Database / State
+
+{{DATABASE_SETUP}}
+
+### 4. Configure
+
+All settings in `config.js`:
+
+```js
+module.exports = {
+  {{CONFIG_EXAMPLE}}
+};
+```
+
+## Architecture
+
+```
+{{ARCHITECTURE_DIAGRAM}}
+```
+
+### Data Model
+
+{{DATA_MODEL}}
+
+## Running
+
+### Manual
+
+```bash
+source credentials/.env  # always source credentials first
+
+# Dry run — see what would happen, no writes or sends
+{{DRY_RUN_COMMANDS}}
+
+# Production run
+{{PRODUCTION_COMMANDS}}
+```
+
+### Automated (Cron)
+
+```bash
+{{CRON_ENTRIES}}
+```
+
+## Safety & Rules
+
+- **--dry-run first** — always test before real execution
+- {{SAFETY_RULE_1}}
+- {{SAFETY_RULE_2}}
+- **No duplicate processing** — guard against re-runs
+- **Error handling** — API errors: log + continue; auth failures: log.fatal + exit
+
+## Logging
+
+All scripts use structured logging. Never use raw `console.log` or `console.error`.
+
+```js
+const log = require('../lib/logger')('my-script');
+log.info('Starting', { key: 'value' });
+log.error('API failed', { status: 429 });
+log.fatal('Auth failed', { error: 'invalid_grant' });  // exits process
+```
+
+## File Reference
+
+```
+{{FILE_TREE}}
+```

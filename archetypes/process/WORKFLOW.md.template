@@ -1,0 +1,64 @@
+# {{WORKFLOW_NAME}} — Workflow
+
+Step-by-step instructions for {{WORKFLOW_DESCRIPTION}}.
+See `CLAUDE.md` for project context and `SKILLS.md` for all API code patterns.
+
+---
+
+## 0. Prerequisites
+
+- {{PREREQUISITE_1}}
+- {{PREREQUISITE_2}}
+- {{PREREQUISITE_3}}
+
+---
+
+## 1. {{STEP_1_NAME}}
+
+{{STEP_1_DESCRIPTION}}
+
+```bash
+{{STEP_1_COMMAND}}
+```
+
+{{STEP_1_NOTES}}
+
+---
+
+## 2. {{STEP_2_NAME}}
+
+{{STEP_2_DESCRIPTION}}
+
+```bash
+{{STEP_2_COMMAND}}
+```
+
+---
+
+## 3. {{STEP_3_NAME}}
+
+{{STEP_3_DESCRIPTION}}
+
+---
+
+<!-- Add more steps as needed. Each step should be:
+     - Self-contained (can be re-run independently if it fails)
+     - Idempotent where possible
+     - Include a verification check at the end
+-->
+
+---
+
+## Final Verification
+
+- [ ] {{CHECK_1}}
+- [ ] {{CHECK_2}}
+- [ ] {{CHECK_3}}
+
+---
+
+## Variations
+
+<!-- Document alternate flows here. Example: -->
+<!-- ### Split-year workflow -->
+<!-- Use this when {{CONDITION}}... -->

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Credentials (NEVER commit secrets)
+.env
+credentials/.env
+
+# State / runtime
+*.log
+state/
+state/*.db
+state/*.db-shm
+state/*.db-wal
+state/logs/
+state/backups/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

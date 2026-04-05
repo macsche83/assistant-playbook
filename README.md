@@ -1,107 +1,119 @@
 # Assistant Playbook
 
-Boilerplate templates and conventions for AI-assisted software development. Drop these into any project so that LLMs, IDE tools, and human developers share the same operating system.
+Templates and conventions for AI-assisted development. Drop these into any new project so that Claude Code (or any LLM agent) and the human developer share the same operating system from day one.
 
-## What's Inside
-
-```
-templates/
-├── PROJECT_STATUS.md    → Project entry point (state, changelog, AI instructions)
-├── CURRENT_SPRINT.md    → Active sprint tracker (issues, decisions, blockers)
-└── RETRO_GUIDE.md       → Lightweight retro format (Taoism + Agile)
-```
-
-## Quick Start
-
-1. Copy `templates/PROJECT_STATUS.md` into your project root
-2. Copy `templates/CURRENT_SPRINT.md` into your project root
-3. Replace all `{{PLACEHOLDERS}}` with your project details
-4. Point your `.cursorrules` / AI config to read `PROJECT_STATUS.md` first
-5. Update it at the end of every working session
-
-## Templates
-
-### PROJECT_STATUS.md
-
-The **single source of truth** for project state. Any AI agent, IDE, or developer reads this first.
-
-**Sections:**
-- **Project** — name, repo, stack, goal (one-liners)
-- **Status** — current phase, sprint, date, branch
-- **Next Up** — top 5 tasks from GitHub Issues
-- **Changelog** — keyword-style log, newest first
-- **Task Management** — links to issues, filters, milestones
-- **Directory Map** — folder purposes at a glance
-- **Key Files** — reference table
-- **Conventions** — branching, commits, components, styling
-- **Tools** — what's used and for what
-- **Production** — URLs, prerequisites, env vars, deploy & test commands
-- **AI Agent Instructions** — feature workflow, test rules, design versioning, session lifecycle
-- **Retro & Reflection** — coaching cadence with Taoist principles, sprint velocity tracking
-- **Dao Master** — work-life balance (break reminders, daily wrap-ups)
-
-**AI Instructions include:**
-- **Feature Workflow** — 5-step: Ticket → Wireframe → Approve → Build → Test
-- **Test-With-Feature Rule** — every feature ships with smoke tests
-- **Design File Versioning** — version bump in 3 places, sync review files
-- **Issue Lifecycle Rules** — scope growth, design tickets, DoD updates
-- Session start (read) and session end (update) checklists
-- Changelog, Next Up, and Status update formats
-- What never to do (delete history, change order, add prose)
-
-### CURRENT_SPRINT.md
-
-An **active sprint tracker** that lives alongside PROJECT_STATUS.md.
-
-**Sections:**
-- **Issues** — table with status, owner, notes
-- **Current Focus** — human tasks vs AI tasks
-- **Decisions** — key technical choices made during the sprint
-- **Blockers** — current blockers and how to resolve
-- **Verification** — checklist before closing the sprint
-- **Retrospective** — fill in at sprint end, then archive
-
-### RETRO_GUIDE.md
-
-A **2-minute retrospective** format for solo devs and AI-assisted teams.
-
-**Format:**
-```
-Flow:     [keyword — smooth, stuck, scattered, focused]
-Win:      [one thing that went well]
-Friction: [one thing that slowed us down]
-Next:     [one adjustment]
-Dao:      [a Taoist insight for the moment]
-```
-
-**Principles covered:**
-- Wu Wei (effortless action)
-- Pu (the uncarved block / simplicity)
-- Water (adaptive persistence)
-- Te (virtue through action)
-- Ziran (naturalness)
-- Wuji (the value of rest)
+> *"A journey of a thousand commits begins with a single `git add`."*
 
 ## Philosophy
 
-> "A journey of a thousand commits begins with a single `git add`."
-
 This playbook blends:
-- **Taoist principles** — simplicity, flow, natural rhythm
+- **Taoist principles** — simplicity, flow, natural rhythm, sustainable pace
 - **Agile practice** — sprints, retros, iterative delivery
 - **AI-native workflow** — structured files that LLMs can parse, follow, and maintain
 
 The goal: stay aligned, ship often, reflect briefly, keep it simple.
 
-## Usage with AI Tools
+## How It Works
 
-| Tool | How to integrate |
-|------|-----------------|
-| **Claude Code** | Add to CLAUDE.md or memory: "Read PROJECT_STATUS.md first" |
-| **Cursor** | Add to `.cursorrules`: "Read PROJECT_STATUS.md before starting work" |
-| **ChatGPT/Other** | Paste PROJECT_STATUS.md as context at session start |
-| **GitHub Copilot** | Reference in repo instructions |
+### 1. Pick an archetype
 
-## License
+Your project type determines which instruction files you need:
 
-MIT — use freely, adapt to your workflow.
+| Archetype | For | Depth Files |
+|-----------|-----|-------------|
+| **Product** | UI, web, apps with sprints | `PROJECT_STATUS.md` + `CURRENT_SPRINT.md` + `SKILL.md` |
+| **System** | Scripts, automation, data pipelines | `INSTRUCTIONS.md` + `config.js` |
+| **Process** | Recurring tasks, no code product | `WORKFLOW.md` + `SKILLS.md` |
+
+### 2. Copy core + archetype files
+
+Every project gets:
+- `CLAUDE.md` — AI agent entry point (from `core/`)
+- `RETRO.md` — retro log
+- `RETRO_GUIDE.md` — retro format with Taoist principles
+- `DAO_MASTER.md` — work-life coaching
+- `memory/` — portable AI memory with starter files
+
+Plus the archetype-specific depth files.
+
+### 3. Add optional modules
+
+Pick what fits:
+
+| Module | When |
+|--------|------|
+| `design-review` | Project has UI — adds wireframe-first gate |
+| `visual-guidelines` | Creating diagrams or visual docs |
+| `credentials` | Project needs API keys or secrets |
+| `database` | Project has a database connection |
+| `setup` | Project may migrate to new machines |
+| `ai-audit-trail` | System uses LLM classification |
+| `testing` | System needs E2E test protocol |
+
+### 4. Pick a task tracker workflow
+
+| Tracker | File |
+|---------|------|
+| Notion | `workflows/notion/notion-workflow.md` |
+| GitHub Issues | `workflows/github-issues/github-issues-workflow.md` |
+| Jira | `workflows/jira/jira-workflow.md` |
+
+### 5. Fill in placeholders
+
+Replace all `{{PLACEHOLDERS}}` with your project details.
+
+## Repo Structure
+
+```
+assistant-playbook/
+├── core/                    # Universal (every project)
+│   ├── CLAUDE.md.template
+│   ├── RETRO.md.template
+│   ├── RETRO_GUIDE.md
+│   ├── DAO_MASTER.md
+│   ├── MEMORY.md.template
+│   ├── memory/              # Starter memory files
+│   └── gitignore.template
+│
+├── archetypes/              # Pick one
+│   ├── product/             # UI/web/app
+│   ├── system/              # Scripts/automation
+│   └── process/             # Recurring tasks
+│
+├── modules/                 # Pick what fits
+│   ├── design-review/
+│   ├── visual-guidelines/
+│   ├── credentials/
+│   ├── database/
+│   ├── setup/
+│   ├── ai-audit-trail/
+│   └── testing/
+│
+├── workflows/               # Pick one
+│   ├── notion/
+│   ├── github-issues/
+│   └── jira/
+│
+├── skills/                  # Skill file templates
+│   ├── README.md
+│   └── examples/
+│
+└── reference/               # Knowledge base
+    ├── patterns.md          # What worked across 6 projects
+    ├── anti-patterns.md     # What didn't work
+    └── changelog.md
+```
+
+## Universal Rules (Every Project)
+
+1. **95% confidence → ask first** — no silent assumptions
+2. **Session start: read entry point** — always read CLAUDE.md first
+3. **Session end: update status** — always update state files
+4. **Conventional commits** — `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:`
+5. **T-shirt estimates** — XS/S/M/L calibrated to AI-assisted speed
+6. **Retros** — regular reflection, Taoist + Agile format
+7. **In-repo memory** — `./memory/` for portability
+
+## Coming Next
+
+**INSTALL.md** — a guided installation wizard where the LLM interviews you about your project and generates the full scaffolding automatically. (Phase 2)

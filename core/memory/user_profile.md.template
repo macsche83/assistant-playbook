@@ -1,0 +1,11 @@
+---
+name: user_profile
+description: User role, expertise level, and collaboration preferences
+type: user
+---
+
+**Role:** {{USER_ROLE}}
+**Expertise:** {{USER_EXPERTISE}}
+**Working style:** {{WORKING_STYLE}}
+
+**How to apply:** Tailor explanations, suggestions, and code complexity to this user's level. A senior engineer needs different context than a first-time coder.

@@ -1,0 +1,69 @@
+# E2E Testing Protocol — {{PROJECT_NAME}}
+
+## Test Contact / Environment
+
+| Key | Value |
+|-----|-------|
+| Test contact | {{TEST_CONTACT}} |
+| Test environment | {{TEST_ENV}} |
+| Trigger | Changes to {{TRIGGER_FILES}} |
+
+## When to Run
+
+- After changes to {{CORE_LOGIC_FILES}}
+- After changes to AI prompts or classification logic
+- Before deploying new cron schedule or major refactors
+- Before version bumps
+
+## Procedure
+
+### 1. Prepare
+
+- Create a task in the tracker: "E2E test: [what changed]"
+- Set up test data: {{TEST_DATA_SETUP}}
+
+### 2. Dry Run
+
+```bash
+{{DRY_RUN_COMMAND}}
+```
+
+Verify: {{DRY_RUN_VERIFICATION}}
+
+### 3. Execute
+
+{{TEST_STEPS}}
+
+### 4. Verify
+
+For each step, check:
+- [ ] Logs show expected behavior
+- [ ] Database/state updated correctly
+- [ ] External side effects correct (emails sent, API calls made)
+- [ ] No errors in logs
+
+### 5. Clean Up
+
+```bash
+{{CLEANUP_COMMAND}}
+```
+
+**Always clean up test data after testing.**
+
+### 6. Close
+
+- Close the task with comment: steps run, bugs found, fixes applied
+
+## Smoke Test Script
+
+```bash
+{{SMOKE_TEST_COMMAND}}
+```
+
+## Test-With-Feature Rule
+
+Every new feature must include a smoke test that can be run before production:
+- Add matching assertions to the relevant test script
+- DoD for any feature ticket MUST include a `## Test Instructions` section
+- Before deploying: run all test scripts — all green — deploy
+- Test scripts are cumulative — never remove passing tests, only add

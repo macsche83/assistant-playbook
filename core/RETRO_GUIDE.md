@@ -5,19 +5,21 @@
 
 ## Cadence
 
-Every **2 days** — at a natural pause point, not as a ceremony.
+Every **{{RETRO_CADENCE}}** — at a natural pause point, not as a ceremony.
 Takes **2 minutes** max. The value is in the habit, not the depth.
+
+Default: every 2 days or every 5 tasks completed, whichever comes first.
 
 ## Format
 
 ```
 --- RETRO [YYYY-MM-DD] ---
 
-Flow:    [one keyword — smooth, stuck, scattered, focused, rushing, calm]
-Win:     [one thing that went well]
-Friction:[one thing that slowed us down]
-Next:    [one adjustment for the next 2 days]
-Dao:     [a brief Taoist insight + plain-language explanation of what it means]
+Flow:     [one keyword — smooth, stuck, scattered, focused, rushing, calm]
+Win:      [one thing that went well]
+Friction: [one thing that slowed us down]
+Next:     [one adjustment for the next cycle]
+Dao:      [a brief Taoist insight + plain-language explanation]
 
 ---
 ```
@@ -25,13 +27,14 @@ Dao:     [a brief Taoist insight + plain-language explanation of what it means]
 ## Example
 
 ```
---- RETRO 2026-02-09 ---
+--- RETRO 2026-04-05 ---
 
 Flow:    focused
 Win:     Notion integration done in one session
 Friction:Spent too long choosing between caching strategies
 Next:    Pick the simpler option first, optimize later
-Dao:     "The best knife is used, not admired." — A tool's value is in its use, not its polish. Ship working code before perfecting it.
+Dao:     "The best knife is used, not admired." — A tool's value is in its use,
+         not its polish. Ship working code before perfecting it.
 
 ---
 ```
@@ -79,21 +82,6 @@ Pattern: [what type of tasks take longer/shorter than expected]
 
 This builds an estimation reference over time. AI+human pair work has different velocity patterns than solo work — tracking reveals which task types benefit most from collaboration.
 
-## Agile Reminders
-
-- **Sprint = Breath:** Inhale (plan, build) → Exhale (ship, reflect). Don't hold your breath.
-- **Velocity is not speed:** Direction matters more than pace.
-- **Small wins compound:** One task, one commit, one test. The river carves the canyon drop by drop.
-- **Done > Perfect:** A shipped feature beats a polished concept.
-- **Reflect to recalibrate:** The retro isn't judgment — it's a compass check.
-
-## Where to Log
-
-Add retro entries to `PROJECT_STATUS.md` changelog:
-```
-- `[2026-02-09] RETRO` — Flow: focused. Shipping faster by choosing simpler options first.
-```
-
 ## AI Agent Behavior
 
 When prompting for a retro:
@@ -103,3 +91,11 @@ When prompting for a retro:
 - If the human declines, respect it — try again next session
 - Never repeat Taoist quotes — find fresh ones relevant to the situation
 - **Always explain the wisdom** — don't just drop a quote. Add a brief plain-language note on what it means and how it relates to the current work. The insight should be actionable, not decorative.
+
+## Agile Reminders
+
+- **Sprint = Breath:** Inhale (plan, build) → Exhale (ship, reflect). Don't hold your breath.
+- **Velocity is not speed:** Direction matters more than pace.
+- **Small wins compound:** One task, one commit, one test. The river carves the canyon drop by drop.
+- **Done > Perfect:** A shipped feature beats a polished concept.
+- **Reflect to recalibrate:** The retro isn't judgment — it's a compass check.
