@@ -11,8 +11,95 @@
 ```bash
 cd /path/to/your-new-project
 # Then tell Claude Code:
-# "Read /path/to/assistant-playbook/INSTALL.md and set up this project"
+# "Read ~/Desktop/assistant-playbook/INSTALL.md and set up this project"
 ```
+
+---
+
+## Known Tools & Credentials Registry
+
+> **For the LLM:** Before starting the interview, scan this registry. These are the tools and accounts already configured on this machine. Use them to pre-fill answers and skip unnecessary questions.
+
+### Task Management
+
+| Tool | Account | Connection | Credentials |
+|------|---------|------------|-------------|
+| **Notion** | officefabrimmo-immo workspace | MCP (OAuth) + API | `NOTION_API_KEY` — shared across projects. Copy from `~/Desktop/lead-management/credentials/.env` or `~/Desktop/fishnet/.env.local` |
+| **Jira** | aimmo.atlassian.net | MCP (`mcp-atlassian`) | Already configured in `~/.claude/claude_desktop_config.json` — username: `marc.gstoehl@aimmo.io` |
+| **GitHub** | macsche83 | CLI (`gh`) at `/opt/homebrew/bin/gh` | Authenticated via keyring (HTTPS protocol) |
+
+### AI / LLM
+
+| Tool | Credentials |
+|------|-------------|
+| **Claude API** (Anthropic) | `ANTHROPIC_API_KEY` — copy from `~/Desktop/lead-management/credentials/.env` |
+| **Gemini API** (Google) | `GEMINI_API_KEY` — copy from `~/Desktop/abuero-website/.env.local` |
+
+### Google Workspace
+
+| Tool | Account | Connection |
+|------|---------|------------|
+| **Google Workspace CLI** (`gws`) | `office.fabrimmo@gmail.com` | CLI at `~/.local/bin/gws` (v0.13.2) |
+| **Gmail API** (lead-management) | `patrikschneider20@gmail.com` | OAuth via `GOOGLE_REFRESH_TOKEN` in `~/Desktop/lead-management/credentials/.env` |
+| **Gmail API** (client-onboarding) | `team.support@aimmo.io` | OAuth via `GMAIL_CLIENT_ID` + `GMAIL_CLIENT_SECRET` + `GMAIL_REFRESH_TOKEN` in `~/Desktop/client-onboarding/.env` |
+| **Google Calendar MCP** | — | Available as `mcp__claude_ai_Google_Calendar__authenticate` |
+| **Gmail MCP** | — | Available as `mcp__claude_ai_Gmail__authenticate` |
+
+### Hosting & Infrastructure
+
+| Tool | Account | Credentials |
+|------|---------|-------------|
+| **Vercel** | — | CLI: `vercel` (check `which vercel`) |
+| **Supabase** | fishnet project | `NEXT_PUBLIC_SUPABASE_URL` + keys in `~/Desktop/fishnet/.env.local` |
+| **HubSpot** | AIMMO account | `HUBSPOT_TOKEN` in `~/Desktop/lead-management/credentials/.env` |
+
+### Domain-Specific
+
+| Tool | Account | Credentials |
+|------|---------|-------------|
+| **bexio API** | Fabrimmo AG | `BEXIO_PAT` in `~/Desktop/nebenkostenverrechnen/.env` |
+| **Slack** | AIMMO workspace | `SLACK_WEBHOOK_URL` in `~/Desktop/client-onboarding/.env` |
+
+### Notion Database IDs (Known)
+
+| Database | ID | Used By |
+|----------|----|---------|
+| Tasks (AIMMO-wide) | `b93845eb-ecc1-4a7e-ac58-fb38ba71e5e1` | lead-management, client-onboarding |
+| Projects | `7c9d8290-ab56-4772-9fc1-2a822a366185` | lead-management |
+| CRM | `816f24e1-0285-43a0-92e7-dda691dae919` | client-onboarding |
+| Opportunities | `ccf8ab4a-e915-4636-a238-ba9c30efc7f5` | client-onboarding |
+| Unified Content (fishnet) | in `NOTION_CONTENT_DB_ID` env var | fishnet |
+
+### Notion User IDs (Known)
+
+| Person | ID |
+|--------|----|
+| Marc Gstöhl | `473f23f4-cc88-45ea-a7dc-186ed2248fc7` |
+
+### GitHub Accounts
+
+| Account | Repos |
+|---------|-------|
+| `macsche83` | lead-management, assistant-playbook, aimmo-website (fishnet) |
+| `officefabrimmo-immo` | abuero-website |
+
+---
+
+### How the Wizard Uses This Registry
+
+During **Q4 (Task Tracker):**
+- If user picks Notion → check if `NOTION_API_KEY` exists in any known location → offer to reuse
+- If user picks Jira → Jira MCP is already configured → skip setup, go straight to project discovery
+- If user picks GitHub → `gh` is authenticated as `macsche83` → auto-discover repo
+
+During **Q5 (External Services):**
+- For each service mentioned, check this registry for existing credentials
+- Report: "Found ANTHROPIC_API_KEY in lead-management — want me to copy it?"
+
+During **Q6 (Credentials):**
+- Pre-fill `credentials/.env.example` with vars from this registry
+- Copy actual values from existing project `.env` files into the new `credentials/.env`
+- Only ask the user for credentials that don't exist anywhere yet
 
 ---
 
