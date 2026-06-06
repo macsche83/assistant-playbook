@@ -17,24 +17,27 @@ The goal: stay aligned, ship often, reflect briefly, keep it simple.
 
 ### 1. Pick an archetype
 
-Your project type determines which instruction files you need:
+Your project type determines which depth files you need:
 
 | Archetype | For | Depth Files |
 |-----------|-----|-------------|
 | **Product** | UI, web, apps with sprints | `PROJECT_STATUS.md` + `CURRENT_SPRINT.md` + `SKILL.md` |
-| **System** | Scripts, automation, data pipelines | `INSTRUCTIONS.md` + `config.js` |
+| **System** | Scripts, automation, data pipelines | `config.js` |
 | **Process** | Recurring tasks, no code product | `WORKFLOW.md` + `SKILLS.md` |
 
 ### 2. Copy core + archetype files
 
 Every project gets:
-- `CLAUDE.md` — AI agent entry point (from `core/`)
+- `INSTRUCTIONS.md` — core project instructions, LLM-agnostic (from `core/`)
+- `CLAUDE.md` — thin Claude Code entry point that forwards to `INSTRUCTIONS.md` + Claude-specific config (memory paths, tool settings)
 - `RETRO.md` — retro log
 - `RETRO_GUIDE.md` — retro format with Taoist principles
 - `DAO_MASTER.md` — work-life coaching
 - `memory/` — portable AI memory with starter files
 
 Plus the archetype-specific depth files.
+
+> **Architecture:** `INSTRUCTIONS.md` is the single source of truth for all project rules. LLM-specific files (`CLAUDE.md`, `CURSOR.md`, etc.) are thin forwarders that point to `INSTRUCTIONS.md` and only add LLM-specific settings like memory location, session handling, or tool configuration.
 
 ### 3. Add optional modules
 
@@ -67,7 +70,8 @@ Replace all `{{PLACEHOLDERS}}` with your project details.
 ```
 assistant-playbook/
 ├── core/                    # Universal (every project)
-│   ├── CLAUDE.md.template
+│   ├── INSTRUCTIONS.md.template  # Core rules (LLM-agnostic)
+│   ├── CLAUDE.md.template        # Thin forwarder (Claude-specific)
 │   ├── RETRO.md.template
 │   ├── RETRO_GUIDE.md
 │   ├── DAO_MASTER.md
@@ -107,7 +111,7 @@ assistant-playbook/
 ## Universal Rules (Every Project)
 
 1. **95% confidence → ask first** — no silent assumptions
-2. **Session start: read entry point** — always read CLAUDE.md first
+2. **Session start: read entry point** — read LLM-specific file (e.g. `CLAUDE.md`), then `INSTRUCTIONS.md`
 3. **Session end: update status** — always update state files
 4. **Conventional commits** — `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `test:`
 5. **T-shirt estimates** — XS/S/M/L calibrated to AI-assisted speed

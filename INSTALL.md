@@ -405,37 +405,43 @@ Once confirmed, create all files. Use the templates from the playbook, replacing
 
 Create these in the project root:
 
-1. **`CLAUDE.md`** — from `core/CLAUDE.md.template`
+1. **`INSTRUCTIONS.md`** — from `core/INSTRUCTIONS.md.template`
+   - This is the core, LLM-agnostic project instructions file
    - Remove all `{{#SECTION}}...{{/SECTION}}` blocks that don't apply to this archetype
    - Fill all `{{PLACEHOLDERS}}`
    - Set `{{DEPTH_FILE}}` based on archetype:
      - Product → `PROJECT_STATUS.md`
-     - System → `INSTRUCTIONS.md`
+     - System → `config.js`
      - Process → `WORKFLOW.md`
 
-2. **`RETRO.md`** — from `core/RETRO.md.template`
+2. **`CLAUDE.md`** — from `core/CLAUDE.md.template`
+   - Thin forwarder that points to `INSTRUCTIONS.md`
+   - Only contains Claude-specific config: memory paths, tool settings, session handling
+   - Other LLMs get their own entry files (e.g. `CURSOR.md`, `.copilot-instructions.md`) following the same pattern
+
+3. **`RETRO.md`** — from `core/RETRO.md.template`
    - Fill `{{PROJECT_NAME}}` and `{{RETRO_CADENCE}}`
 
-3. **`RETRO_GUIDE.md`** — copy `core/RETRO_GUIDE.md` as-is
+4. **`RETRO_GUIDE.md`** — copy `core/RETRO_GUIDE.md` as-is
    - Replace `{{RETRO_CADENCE}}` with the chosen cadence
 
-4. **`DAO_MASTER.md`** — copy `core/DAO_MASTER.md` as-is
+5. **`DAO_MASTER.md`** — copy `core/DAO_MASTER.md` as-is
 
-5. **`memory/MEMORY.md`** — from `core/MEMORY.md.template`
+6. **`memory/MEMORY.md`** — from `core/MEMORY.md.template`
 
-6. **`memory/user_profile.md`** — from `core/memory/user_profile.md.template`
+7. **`memory/user_profile.md`** — from `core/memory/user_profile.md.template`
    - Fill with Q14 answers
 
-7. **`memory/project_context.md`** — from `core/memory/project_context.md.template`
+8. **`memory/project_context.md`** — from `core/memory/project_context.md.template`
    - Fill with Q1 answers
 
-8. **`memory/retro.md`** — from `core/memory/retro.md.template`
+9. **`memory/retro.md`** — from `core/memory/retro.md.template`
    - Fill `{{RETRO_CADENCE}}`
 
-9. **`memory/reference_services.md`** — from `core/memory/reference_services.md.template`
-   - Fill with Q5 answers (external services)
+10. **`memory/reference_services.md`** — from `core/memory/reference_services.md.template`
+    - Fill with Q5 answers (external services)
 
-10. **`.gitignore`** — append contents of `core/gitignore.template` to existing .gitignore (or create if none)
+11. **`.gitignore`** — append contents of `core/gitignore.template` to existing .gitignore (or create if none)
 
 ### 6.2: Archetype Files
 
@@ -445,7 +451,6 @@ Create these in the project root:
 - `SKILL.md` — from `archetypes/product/SKILL.md.template`
 
 **If System:**
-- `INSTRUCTIONS.md` — from `archetypes/system/INSTRUCTIONS.md.template`
 - `config.js` — from `archetypes/system/config.template.js` (only if Node.js project)
 
 **If Process:**
@@ -455,18 +460,18 @@ Create these in the project root:
 ### 6.3: Task Tracker Workflow
 
 **If Notion:**
-- Copy the content from `workflows/notion/notion-workflow.md` into the **Task Management** section of CLAUDE.md
+- Copy the content from `workflows/notion/notion-workflow.md` into the **Task Management** section of INSTRUCTIONS.md
 - Fill all Notion IDs from the auto-discovery in Q4 (Tasks DB, Projects DB, User ID, Project ID)
 - Fill status flow with the actual statuses discovered from the database
 - Fill documentation page IDs if any were found
 
 **If GitHub Issues:**
-- Copy the content from `workflows/github-issues/github-issues-workflow.md` into the **Task Management** section of CLAUDE.md
+- Copy the content from `workflows/github-issues/github-issues-workflow.md` into the **Task Management** section of INSTRUCTIONS.md
 - Fill repo URL from Q1
 - Create missing priority labels if user approved in Q4
 
 **If Jira:**
-- Copy the content from `workflows/jira/jira-workflow.md` into the **Task Management** section of CLAUDE.md
+- Copy the content from `workflows/jira/jira-workflow.md` into the **Task Management** section of INSTRUCTIONS.md
 - Fill Jira URL, project key, and status flow from auto-discovery in Q4
 
 ### 6.4: Credentials (if HAS_CREDENTIALS)
@@ -474,7 +479,7 @@ Create these in the project root:
 - Create `credentials/.env.example` with all env vars from Q6 (auto-discovered + manual)
 - Create `credentials/.env` with any values that were found in other project credentials
 - Ensure `.gitignore` includes `credentials/.env`
-- Add credential section to CLAUDE.md key files table
+- Add credential section to INSTRUCTIONS.md key files table
 - Tell the user which values were copied and which still need to be filled in
 
 ### 6.5: Database (if HAS_DATABASE != none)
@@ -485,18 +490,18 @@ Create these in the project root:
 
 **If Remote:**
 - Create `DATABASE_CONNECTION.md` from `modules/database/DATABASE_CONNECTION.md.template`
-- Add to CLAUDE.md key files table
+- Add to INSTRUCTIONS.md key files table
 
 ### 6.6: Optional Modules
 
 **If HAS_DESIGN_REVIEW:**
-- Add design review section to CLAUDE.md (from `modules/design-review/design-review.md`)
+- Add design review section to INSTRUCTIONS.md (from `modules/design-review/design-review.md`)
 
 **If 'visual-guidelines' in MODULES:**
 - Copy `modules/visual-guidelines/visual-guidelines.md` to project root or `docs/`
 
 **If 'ai-audit-trail' in MODULES:**
-- Add AI audit trail rules to CLAUDE.md code rules section
+- Add AI audit trail rules to INSTRUCTIONS.md rules section
 
 **If 'testing' in MODULES:**
 - Create `E2E_TESTING.md` from `modules/testing/E2E_TESTING.md.template`
@@ -505,7 +510,7 @@ Create these in the project root:
 - Create `SETUP.md` from `modules/setup/SETUP.md.template`
 
 **If HAS_SCRIPTS:**
-- Add dry-run-first rule to CLAUDE.md code rules
+- Add dry-run-first rule to INSTRUCTIONS.md rules section
 
 ---
 
@@ -513,8 +518,9 @@ Create these in the project root:
 
 After generating all files, verify:
 
-1. **Read CLAUDE.md** — confirm it reads cleanly, no leftover `{{PLACEHOLDERS}}` or `{{#SECTION}}` blocks
-2. **Check cross-references** — every file mentioned in CLAUDE.md key files table actually exists
+1. **Read INSTRUCTIONS.md** — confirm it reads cleanly, no leftover `{{PLACEHOLDERS}}` or `{{#SECTION}}` blocks
+2. **Read CLAUDE.md** — confirm it's a thin forwarder with only Claude-specific config
+3. **Check cross-references** — every file mentioned in INSTRUCTIONS.md key files table actually exists
 3. **Check memory/** — MEMORY.md index matches the files that exist
 4. **Check .gitignore** — credentials and state files are excluded
 5. **No secrets** — confirm no real API keys or passwords were written to any file
@@ -528,7 +534,7 @@ Present to the user:
 > **Next steps:**
 > 1. Fill in any remaining `{{PLACEHOLDERS}}` in the depth file ({{DEPTH_FILE}})
 > 2. {{IF_CREDENTIALS}} Copy `credentials/.env.example` to `credentials/.env` and add your real keys
-> 3. Read through CLAUDE.md to make sure it matches how you want to work
+> 3. Read through INSTRUCTIONS.md to make sure it matches how you want to work
 > 4. Start your first task — the system is ready."
 
 ---
@@ -539,21 +545,21 @@ Present to the user:
 
 | Variable | Source | Used In |
 |----------|--------|---------|
-| `PROJECT_NAME` | Q1 | CLAUDE.md, PROJECT_STATUS.md, RETRO.md, memory files |
-| `REPO_URL` | Q1 | CLAUDE.md, PROJECT_STATUS.md, SKILL.md |
-| `ONE_LINE_GOAL` | Q1 | CLAUDE.md, PROJECT_STATUS.md, project_context.md |
-| `USER_NAME` | Q1 | CLAUDE.md (review gate, design review) |
+| `PROJECT_NAME` | Q1 | INSTRUCTIONS.md, PROJECT_STATUS.md, RETRO.md, memory files |
+| `REPO_URL` | Q1 | INSTRUCTIONS.md, PROJECT_STATUS.md, SKILL.md |
+| `ONE_LINE_GOAL` | Q1 | INSTRUCTIONS.md, PROJECT_STATUS.md, project_context.md |
+| `USER_NAME` | Q1 | INSTRUCTIONS.md (review gate, design review) |
 | `ARCHETYPE` | Q2 | Determines which archetype files to copy |
-| `TECH_STACK` | Q3 | CLAUDE.md, PROJECT_STATUS.md |
+| `TECH_STACK` | Q3 | INSTRUCTIONS.md, PROJECT_STATUS.md |
 | `TASK_TRACKER` | Q4 | Determines which workflow to embed |
 | `SERVICES` | Q5 | reference_services.md, SKILL.md / SKILLS.md |
 | `HAS_CREDENTIALS` | Q6 | Credentials setup, .gitignore |
 | `ENV_VARS` | Q6 | credentials/.env.example, credentials/.env |
-| `LANGUAGE_RULE` | Q7 | CLAUDE.md code rules |
-| `HAS_REVIEW_GATE` | Q8 | CLAUDE.md collaboration rules |
-| `HAS_DESIGN_REVIEW` | Q9 | CLAUDE.md design review section |
+| `LANGUAGE_RULE` | Q7 | INSTRUCTIONS.md rules |
+| `HAS_REVIEW_GATE` | Q8 | INSTRUCTIONS.md collaboration rules |
+| `HAS_DESIGN_REVIEW` | Q9 | INSTRUCTIONS.md design review section |
 | `RETRO_CADENCE` | Q10 | RETRO.md, RETRO_GUIDE.md, memory/retro.md |
-| `HAS_SCRIPTS` | Q11 | CLAUDE.md code rules (dry-run) |
+| `HAS_SCRIPTS` | Q11 | INSTRUCTIONS.md rules (dry-run) |
 | `HAS_DATABASE` | Q12 | DATABASE_CONNECTION.md, .gitignore |
 | `MODULES` | Q13 | Determines which optional modules to include |
 | `USER_ROLE` | Q14 | memory/user_profile.md |
@@ -564,15 +570,15 @@ Present to the user:
 
 | Variable | Source | Used In |
 |----------|--------|---------|
-| `NOTION_TASKS_DB` | Notion MCP auto-discovery | CLAUDE.md task management, notion-workflow |
-| `NOTION_PROJECTS_DB` | Notion MCP auto-discovery | CLAUDE.md task management |
-| `NOTION_USER_ID` | Notion MCP auto-discovery | CLAUDE.md task management |
-| `NOTION_PROJECT_ID` | Notion MCP auto-discovery | CLAUDE.md task management |
-| `NOTION_STATUS_FLOW` | Notion MCP auto-discovery | CLAUDE.md task management |
-| `NOTION_DOC_PAGES` | Notion MCP auto-discovery | CLAUDE.md documentation sync |
-| `JIRA_URL` | Jira MCP auto-discovery | CLAUDE.md task management, jira-workflow |
-| `JIRA_PROJECT_KEY` | Jira MCP auto-discovery | CLAUDE.md task management |
-| `JIRA_STATUS_FLOW` | Jira MCP auto-discovery | CLAUDE.md task management |
+| `NOTION_TASKS_DB` | Notion MCP auto-discovery | INSTRUCTIONS.md task management, notion-workflow |
+| `NOTION_PROJECTS_DB` | Notion MCP auto-discovery | INSTRUCTIONS.md task management |
+| `NOTION_USER_ID` | Notion MCP auto-discovery | INSTRUCTIONS.md task management |
+| `NOTION_PROJECT_ID` | Notion MCP auto-discovery | INSTRUCTIONS.md task management |
+| `NOTION_STATUS_FLOW` | Notion MCP auto-discovery | INSTRUCTIONS.md task management |
+| `NOTION_DOC_PAGES` | Notion MCP auto-discovery | INSTRUCTIONS.md documentation sync |
+| `JIRA_URL` | Jira MCP auto-discovery | INSTRUCTIONS.md task management, jira-workflow |
+| `JIRA_PROJECT_KEY` | Jira MCP auto-discovery | INSTRUCTIONS.md task management |
+| `JIRA_STATUS_FLOW` | Jira MCP auto-discovery | INSTRUCTIONS.md task management |
 | `GH_LABELS` | GitHub CLI auto-discovery | Priority labels, status labels |
 | `GH_MILESTONES` | GitHub CLI auto-discovery | Sprint milestones |
 | `EXISTING_CREDENTIALS` | Scanned from other projects | credentials/.env (copied values) |
@@ -584,8 +590,9 @@ Present to the user:
 
 The generated files are starting points. Customize freely:
 
-- **Add sections** to CLAUDE.md as your project evolves
+- **Add sections** to INSTRUCTIONS.md as your project evolves
+- **Add LLM-specific config** to CLAUDE.md (or add entry files for other LLMs)
 - **Add memory files** as you learn things worth remembering
 - **Add skills** to `.claude/skills/` for reusable AI capabilities
 - **Update RETRO_GUIDE.md** if you prefer a different retro format
-- **Swap task tracker** by replacing the Task Management section in CLAUDE.md
+- **Swap task tracker** by replacing the Task Management section in INSTRUCTIONS.md
